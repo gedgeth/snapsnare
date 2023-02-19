@@ -2,6 +2,11 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.get('/index.js', (req, res) => {
+  res.set('Content-Type', 'text/javascript');
+  res.sendFile(path.join(__dirname, 'client/build/static/js', 'index.js'));
+});
+
 app.post('/api/tweet', (req, res) => {
   const tweet = req.body.tweet;
   // Use the Twit library to post the tweet
