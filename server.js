@@ -12,8 +12,9 @@ app.use((req, res, next) => {
 
 app.get('/index.js', (req, res) => {
   res.set('Content-Type', 'text/javascript');
-  res.sendFile(path.join(__dirname, 'client', 'build', 'static', 'js', 'index.js'));
+  res.sendFile(path.join(__dirname, 'src', 'client', 'build', 'static', 'js', 'index.js'));
 });
+
 
 app.post('/api/tweet', (req, res) => {
   const tweet = req.body.tweet;
