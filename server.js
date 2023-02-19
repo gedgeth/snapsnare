@@ -1,10 +1,18 @@
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/client/build'));
+app.use(express.static(__dirname + '/public'));
+
+app.use((req, res, next) => {
+  res.header('Content-Type', 'text/javascript');
+  next();
+});
+
 
 app.get('/index.js', (req, res) => {
   res.set('Content-Type', 'text/javascript');
-  res.sendFile(path.join(__dirname, 'client/build/static/js', 'main.index.js'));
+  res.sendFile(path.join(__dirname, 'client', 'build', 'static', 'js', 'index.js'));
 });
 
 app.post('/api/tweet', (req, res) => {
