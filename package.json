@@ -8,11 +8,22 @@
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "gedgeth",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  }
+    "react-dom": "^18.2.0",
+    "twit": "^2.2.11",
+    "twitter": "^1.7.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/gedgeth/snapsnare.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gedgeth/snapsnare/issues"
+  },
+  "homepage": "https://github.com/gedgeth/snapsnare#readme"
 }

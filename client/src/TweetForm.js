@@ -1,21 +1,36 @@
 import React, { useState } from 'react';
 
 function TweetForm() {
-  const [tweetURL, setTweetURL] = useState('');
+  const [tweets, setTweets] = useState([]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Make API call with the tweetURL and update the state with the image URL
+    try {
+      const response = await fetch('/api/tweets');
+      const data = await response.json();
+      setTweets(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Tweet URL:
-        <input type="text" value={tweetURL} onChange={(event) => setTweetURL(event.target.value)} />
-      </label>
-      <button type="submit">Generate Image</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <button type="submit">Get Tweets</button>
+      </form>
+      <ul>
+        {tweets.map((tweet) => (
+          <li key={tweet.id}>
+            <p>{tweet.text}</p>
+            <p>Username: {tweet.user.screen_name}</p>
+            {tweet.entities.media && (
+              <img src={tweet.entities.media[0].media_url} alt="Tweet media" />
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
